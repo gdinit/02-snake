@@ -1,0 +1,2 @@
+In Wikipedia article, 2 variants of the classic game Snake/Worm is discussed. 
+I will be implementing the 2nd variant which I played under the name Nibbles ("nibbles.bas" on Microsoft DOS QBasic if I recall correctly)
