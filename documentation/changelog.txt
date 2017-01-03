@@ -1,0 +1,1 @@
+TODO: Add automated git log import functionality for changelog

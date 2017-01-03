@@ -1,0 +1,7 @@
+// resource.rc
+#ifndef RESOURCE_RC
+#define RESOURCE_RC
+
+my_icon ICON "../exe_icon_for_windows/icon.ico"
+
+#endif

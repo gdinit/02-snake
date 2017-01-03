@@ -1,0 +1,73 @@
+################################################################################
+gdinit's Snake remake -- Source Code and Project Files
+################################################################################
+
+This file explains how to build the code.
+
+There are several directories that contain varios parts of the project (research, assets, source code).
+
+
+================
+I. Install CMake
+================
+Install CMake, preferably CMake-GUI (www.cmake.org or the cmake-gui package in Linux).
+
+
+================
+II. Install SFML
+================
+Download SFML 2 (www.sfml-dev.org). I recommend using a precompiled version of SFML which can be directly downloaded. 
+
+It is also possible to build SFML yourself, in this case make sure that it is *installed* (make install, or compile the INSTALL project). Refer to the online tutorials for more details.
+
+Eventually, you should have a directory with at least the subdirectories "include" and "lib" that contain headers and binaries of the SFML library, for example C:\SFML in Windows or /usr/local in Linux.
+
+
+=====================================
+III. Generate the build configuration
+=====================================
+1. Start cmake-gui.
+
+2. In the field "Where is the source code", enter the path of the directory containing "CMakeLists.txt" file. Use forward slashes.
+
+3. In the field "Where to build the binaries", enter a different path, where you want the intermediate build files of the project's code to be generated.
+
+4. Click "Configure" and choose your compiler.
+
+5. After, an error message might appear, telling that SFML is not found. In order to fix it, enter the path to SFML in the field next to the SFML_ROOT variable. This is the directory mentioned in step II with the "lib" and "include" subdirectories (e.g. C:/SFML or /usr/local).
+
+6. Choose your build configuration by setting CMAKE_BUILD_TYPE to either "Release" or "Debug". We recommend "Release" (it should be the default).
+
+7. In Windows, check the box next to SFML_STATIC_LIBRARIES if you want to link SFML statically. Leave it unchecked if you prefer linking SFML dynamically and using DLL files.
+
+8. Set the CMAKE_INSTALL_PREFIX to the path where you want the executables of the book's code to be installed. Choose a different directory (it can be a subdirectory of this one).
+
+9. Click again "Configure". Now, there should be no more error messages.
+
+10. Click "Generate".
+
+
+====================
+IV. Compile the code
+====================
+1. Switch to the build directory (the one you entered in "Where to build the binaries").
+
+2. Now you should see the files required to compile the code. 
+
+   For g++ or clang, this will be a Makefile. In the terminal, type "make".
+   If you use MinGW on Windows, you might have to type "mingw32-make" instead.
+
+   For Visual Studio, you will see a .sln solution. Open it, choose the correct build configuration ("Release" or "Debug") and build the project.
+   
+   For other integrated development environments, it will be similar. Compile the INSTALL project.
+
+3. After compiling, the executables and media files should be output under the directory you specified with CMAKE_INSTALL_PREFIX with a platform prefix ("release.win", "release.mac" etc.)
+
+
+==========
+V. Results
+==========
+The executables for the game should be located in the install -> platform-specific directory (CMAKE_INSTALL_PREFIX/release.<platform-name>).
+
+If you like to inspect the code itself, under the current directory there is a subdirectory "source" containing the source and header files of the project. Also, the asset files can be found under "assets" subdirectory.
+
