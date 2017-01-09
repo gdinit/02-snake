@@ -1,0 +1,25 @@
+// MISSING ---------------------------------------------------------------------
+-Only activate main menu buttons if the window is active!
+
+// KNOWN ISSUES ----------------------------------------------------------------
+-CREDITS screen is missing. Main menu button is a shortcut to "PLAY (START GAME)". To be added, one day...
+-MAC OS X console error message as per below. solution is moving objects to sharedContext, task created above in MISSING section.
+	AL lib: (EE) alc_cleanup: 1 device not closed
+	Assertion failed: (lockret == althrd_success), function LockLists, file /Users/m/Desktop/tmp/openal/build_deps/openal-soft-openal-soft-1.17.2/Alc/ALc.c, line 776.
+	Abort trap: 6
+	---
+	That's you issue, global initialized SFML resources. As such the destruction order of these global objects is undefined 
+	So SFML's global AL device can be destroyed before the Ball object gets destroyed, which leads to an error
+	The dirty fix would be to manually destroy all the objects before the application is terminated
+	One of the issues with using a global unique_ptr is that, even when you intialize it in a scoped matter, the destruction will still not be defined (I think), 
+	since the unique_ptr lives on until the end of scope, i.e. the end of application
+-Workaround for the above issue: On quit instruction, if the O/S is Mac, send "system command `killall snake`, if O/S is *not* Mac,  then, do a normal exit
+
+// ENHANCEMENT -----------------------------------------------------------------
+-Allow window to be resized (auto-scale). currently, if resized screen ratios get messed up
+-Remove white-block fruit and switch to single-white-digit-text as the fruit - just like original game.
+-Move (currently global unique_ptr) game objects to a sharedContext struct
+-Align sounds with:	http://www.tripletsandus.com/80s/80s_games/shockwave_snake.htm	'game over', 'ate fruit'
+-Centralize font resources & load only once!
+
+// FIXED / COMPLETED / DONE / CANCELLED ----------------------------------------

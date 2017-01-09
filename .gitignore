@@ -34,6 +34,11 @@
 # Mac
 .DS_Store
 
+# IGNORE everything under these directories
 **/build
 **/.vscode
+
+# INCLUDE everything under these directories -- list this at the very bottom
+!dependencies/*
+
 #EOF

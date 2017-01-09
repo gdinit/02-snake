@@ -1,6 +1,6 @@
 @ECHO OFF
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-:: w0_uncrustify_source_files
+:: w0_uncrustify_source_files.bat
 ::
 ::
 :: This script does the following: 

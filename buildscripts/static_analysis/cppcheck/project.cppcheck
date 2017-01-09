@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="1">
+    <root name="C:/g/snakeprivate/source"/>
+    <builddir>C:\g\snakeprivate\build.static_analysis\cppcheck</builddir>
+    <exclude>
+        <path name="C:/g/snakeprivate/source/cmake/"/>
+        <path name="C:/g/snakeprivate/source/cmake/modules/"/>
+    </exclude>
+</project>

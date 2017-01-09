@@ -10,6 +10,7 @@ SETLOCAL
 
 :::::::::::::::::::: MAIN ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 CALL "w0_uncrustify_source_files.bat"					&& ^
+CALL "w0b_cppcheck.bat"							&& ^
 CALL "w1c.wipe_build_dir_then_run_cmake_build_sublime.bat"		&& ^
 CALL "w2.execute_cmake_--build.bat"					&& ^
 CALL "w3.cleanup_build_dir.bat"						&& ^

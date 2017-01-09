@@ -10,6 +10,7 @@ SETLOCAL
 
 :::::::::::::::::::: MAIN ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 CALL "w0_uncrustify_source_files.bat"					&& ^
+CALL "w0b_cppcheck.bat"							&& ^
 CALL "w2.execute_cmake_--build.bat"					&& ^
 CALL "w3.cleanup_build_dir.bat"						&& "wrun.bat"
 :: NOTE1: we use an && to launch the program at the bottom to ensure a failed build WILL NOT trigger an execution
