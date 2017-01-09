@@ -1,0 +1,13 @@
+GAME CONTROLS
+
+------------------------------------------------------------------------
+FUNCTIONALITY		:	DEFAULT BINDING
+------------------------------------------------------------------------
+DIRECTION CONTROL	:	Arrow Keys (and WASD as alternative)
+PAUSE/UNPAUSE		:	PauseBreak, ESC, P
+QUIT GAME		:	Q
+MAIN MENU		:	M
+CONTINUE/START GAME	:	SpaceBar
+				(works on Intro and Main Menu screens)
+------------------------------------------------------------------------
+
