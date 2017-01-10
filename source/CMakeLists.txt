@@ -62,7 +62,7 @@ add_executable(
   snake
   ${GUI_TYPE}
   ${SOURCES}
-  ${MYPROJECT_ROOT_DIR}/exe_icon_for_windows/resource.rc
+  ${MYPROJECT_ROOT_DIR}/extras/exe_icon_for_windows/resource.rc
 )
 
 target_link_libraries(snake ${SFML_LIBRARIES} ${SFML_DEPENDENCIES})
