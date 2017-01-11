@@ -56,16 +56,16 @@ ENDIF(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
 SET(CMAKE_FIND_LIBRARY_SUFFIXES ".a")
 SET(BUILD_SHARED_LIBRARIES OFF)
 
-#add_executable(snake ${SOURCES})
+#add_executable(${PROJECT_NAME} ${SOURCES})
 SET(CMAKE_RC_LINK_EXECUTABLE "${CMAKE_CXX_LINK_EXECUTABLE}")
 add_executable(
-  snake
+  ${PROJECT_NAME}
   ${GUI_TYPE}
   ${SOURCES}
   ${MYPROJECT_ROOT_DIR}/extras/exe_icon_for_windows/resource.rc
 )
 
-target_link_libraries(snake ${SFML_LIBRARIES} ${SFML_DEPENDENCIES})
+target_link_libraries(${PROJECT_NAME} ${SFML_LIBRARIES} ${SFML_DEPENDENCIES})
 
 
 
@@ -85,9 +85,9 @@ elseif	(${CMAKE_SYSTEM_NAME}		MATCHES "Win")
 		"Description to be updated...")
 	#----------------------------------------
 	# for Windows builds, copy dependency binaries to build dir (only OpenAL so far as we embed SFML into the EXE).
-	add_custom_command(TARGET snake POST_BUILD
+	add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
 		COMMAND ${CMAKE_COMMAND} -E copy_directory
-		${MYPROJECT_ROOT_DIR}/dependencies	$<TARGET_FILE_DIR:snake>/)
+		${MYPROJECT_ROOT_DIR}/dependencies	$<TARGET_FILE_DIR:${PROJECT_NAME}>/)
 	#----------------------------------------
 elseif	(${CMAKE_SYSTEM_NAME}		MATCHES "Linux")
 	set	(EXECUTABLE_OUTPUT_PATH
@@ -113,27 +113,44 @@ set	(LIBRARY_OUTPUT_PATH
 	)
 mark_as_advanced	(LIBRARY_OUTPUT_PATH)
 
-################################################################################
-# PRE/POST BUILD SCRIPTS
-################################################################################
 
+
+################################################################################
+# PRE-BUILD SCRIPTS
+################################################################################
 #----------------------------------------
-#add_custom_command(TARGET snake PRE_BUILD
+#add_custom_command(TARGET ${PROJECT_NAME} PRE_BUILD
 #so far, nothing to do in pre-build stage...
 #----------------------------------------
+################################################################################
+
+
+
+################################################################################
+# POST-BUILD SCRIPTS
+################################################################################
+#----------------------------------------
+# copy product ASSETS to build dir
+add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
+	COMMAND ${CMAKE_COMMAND} -E copy_directory
+	${MYPROJECT_ROOT_DIR}/assets				$<TARGET_FILE_DIR:${PROJECT_NAME}>/assets)
+#----------------------------------------
+
 
 #----------------------------------------
-# copy product assets to build dir
-add_custom_command(TARGET snake POST_BUILD
-	COMMAND ${CMAKE_COMMAND} -E copy_directory
-	${MYPROJECT_ROOT_DIR}/assets			$<TARGET_FILE_DIR:snake>/assets)
+# SELF-REMINDER:
+#
+# DLL DEPENDENCIES are handled above, in this section -->  IF ${CMAKE_SYSTEM_NAME} MATCHES WIN
 #----------------------------------------
 
+
+
 #----------------------------------------
-# copy product documentation to build dir
-add_custom_command(TARGET snake POST_BUILD
+# copy product DOCUMENTATION to build dir
+add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
 	COMMAND ${CMAKE_COMMAND} -E copy_directory
-	${MYPROJECT_ROOT_DIR}/documentation		$<TARGET_FILE_DIR:snake>/documentation)
+	${MYPROJECT_ROOT_DIR}/documentation			$<TARGET_FILE_DIR:${PROJECT_NAME}>/documentation)
 #----------------------------------------
+################################################################################
 
 #EOF
