@@ -1,37 +1,15 @@
-cmake_minimum_required(VERSION 3.1 FATAL_ERROR)
 set(CMAKE_LEGACY_CYGWIN_WIN32 0)
+cmake_minimum_required(VERSION 3.1 FATAL_ERROR)
 set (CMAKE_CXX_STANDARD 11)
 
 project(snake)
-
-# SETTING PATHS		########################################################
-#
-# Definitions		################
-# source: https://cmake.org/Wiki/CMake_Useful_Variables
-# CMAKE_SOURCE_DIR	this is the directory, from which cmake was started, i.e. the top level source directory 
-# CMAKE_BINARY_DIR	if you are building in-source, this is the same as CMAKE_SOURCE_DIR, otherwise this is the top level directory of your build tree 
-# PROJECT_SOURCE_DIR	contains the full path to the root of your project source directory, i.e. to the nearest directory where CMakeLists.txt contains the PROJECT() command
-#
-# Our Configuration	################
-#set(PROJECT_SOURCE_DIR	${CMAKE_SOURCE_DIR}/source		CACHE PATH "source files")
-set(PROJECT_SOURCE_DIR	${CMAKE_SOURCE_DIR}			CACHE PATH "source files")
-#set(PROJECT_BINARY_DIR	${CMAKE_SOURCE_DIR}/build		CACHE PATH "out of source, temporary build dir")
-#
-list(APPEND CMAKE_MODULE_PATH	"${CMAKE_SOURCE_DIR}/cmake/modules")
-list(APPEND CMAKE_INCLUDE_PATH	"${CMAKE_SOURCE_DIR}/include")
-# add includes to this using list/appent ->	CMAKE_INCLUDE_PATH 
-#
-# get the MYPROJECT_ROOT_DIR
-get_filename_component(MYPROJECT_ROOT_DIR ${PROJECT_SOURCE_DIR} DIRECTORY)
-########################################
+set(PROJECT_BINARY_DIR "${MYPROJECT_ROOT_DIR}/build" CACHE PATH "out of source, temporary build dir")
 
 find_package(SFML 2.4 COMPONENTS graphics audio window system network)
 
 file	(GLOB SOURCES 
 	"${PROJECT_SOURCE_DIR}/include/*.h" 
-	"${PROJECT_SOURCE_DIR}/include/*.inl" 
-	"${PROJECT_SOURCE_DIR}/*.cc"
-	)
+	"${PROJECT_SOURCE_DIR}/*.cc")
 
 # Compiler options
 if ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU" OR
@@ -40,8 +18,8 @@ if ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU" OR
 elseif ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "MSVC")
     set(warnings "/W4 /WX /EHsc")
 endif()
+
 if (NOT CONFIGURED_ONCE)
-    #set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -w -fpermissive -std=c++11"
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Werror -Wpedantic -std=c++11"
         CACHE STRING "Flags used by the compiler during all build types." FORCE)
     set(CMAKE_C_FLAGS   "${warnings}"
@@ -59,15 +37,15 @@ SET(BUILD_SHARED_LIBRARIES OFF)
 #add_executable(${PROJECT_NAME} ${SOURCES})
 SET(CMAKE_RC_LINK_EXECUTABLE "${CMAKE_CXX_LINK_EXECUTABLE}")
 add_executable(
-  ${PROJECT_NAME}
-  ${GUI_TYPE}
-  ${SOURCES}
-  ${MYPROJECT_ROOT_DIR}/extras/exe_icon_for_windows/resource.rc
-)
+	${PROJECT_NAME}
+	${GUI_TYPE}
+	${SOURCES}
+	${MYPROJECT_ROOT_DIR}/extras/exe_icon_for_windows/resource.rc)
 
-target_link_libraries(${PROJECT_NAME} ${SFML_LIBRARIES} ${SFML_DEPENDENCIES})
-
-
+target_link_libraries(
+	${PROJECT_NAME}
+	${SFML_LIBRARIES}
+	${SFML_DEPENDENCIES})
 
 if	(${CMAKE_SYSTEM_NAME}		MATCHES "Darwin")
 	#set	(CMAKE_EXE_LINKER_FLAGS ${CMAKE_EXE_LINKER_FLAGS} "-static")
@@ -75,45 +53,38 @@ if	(${CMAKE_SYSTEM_NAME}		MATCHES "Darwin")
         set	(EXECUTABLE_OUTPUT_PATH
 		${PROJECT_BINARY_DIR}/release.mac
 		CACHE PATH
-		"Description to be updated..."
-		)
+		"Mac output directory")
 elseif	(${CMAKE_SYSTEM_NAME}		MATCHES "Win")
 	set	(CMAKE_EXE_LINKER_FLAGS ${CMAKE_EXE_LINKER_FLAGS} "-static")
 	set	(EXECUTABLE_OUTPUT_PATH
 		${PROJECT_BINARY_DIR}/release.win
 		CACHE PATH
-		"Description to be updated...")
+		"Windows output directory")
 	#----------------------------------------
-	# for Windows builds, copy dependency binaries to build dir (only OpenAL so far as we embed SFML into the EXE).
+	# for Windows builds, copy dependency binaries to build dir
+	# (only OpenAL so far as we embed SFML into the EXE)
 	add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
 		COMMAND ${CMAKE_COMMAND} -E copy_directory
-		${MYPROJECT_ROOT_DIR}/dependencies	$<TARGET_FILE_DIR:${PROJECT_NAME}>/)
+		${MYPROJECT_ROOT_DIR}/dependencies $<TARGET_FILE_DIR:${PROJECT_NAME}>/)
 	#----------------------------------------
 elseif	(${CMAKE_SYSTEM_NAME}		MATCHES "Linux")
 	set	(EXECUTABLE_OUTPUT_PATH
 		${PROJECT_BINARY_DIR}/release.lin
 		CACHE PATH
-		"Description to be updated..."
-		)
+		"Linux output directory")
 else()
         set	(EXECUTABLE_OUTPUT_PATH
 		${PROJECT_BINARY_DIR}/release.unknown_platform
 		CACHE PATH
-		"Description to be updated..."
-		)
+		"UnknownPlatform output directory")
 endif()
 mark_as_advanced	(EXECUTABLE_OUTPUT_PATH)
-
-
 
 set	(LIBRARY_OUTPUT_PATH
 	${PROJECT_BINARY_DIR}/bin
 	CACHE PATH
-	"Single directory for all libraries."
-	)
+	"NOT IN USE")
 mark_as_advanced	(LIBRARY_OUTPUT_PATH)
-
-
 
 ################################################################################
 # PRE-BUILD SCRIPTS
@@ -130,10 +101,10 @@ mark_as_advanced	(LIBRARY_OUTPUT_PATH)
 # POST-BUILD SCRIPTS
 ################################################################################
 #----------------------------------------
-# copy product ASSETS to build dir
+# copy ASSETS
 add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
 	COMMAND ${CMAKE_COMMAND} -E copy_directory
-	${MYPROJECT_ROOT_DIR}/assets				$<TARGET_FILE_DIR:${PROJECT_NAME}>/assets)
+	${MYPROJECT_ROOT_DIR}/assets			$<TARGET_FILE_DIR:${PROJECT_NAME}>/assets)
 #----------------------------------------
 
 
@@ -146,11 +117,10 @@ add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
 
 
 #----------------------------------------
-# copy product DOCUMENTATION to build dir
+# copy DOCUMENTATION
 add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
 	COMMAND ${CMAKE_COMMAND} -E copy_directory
-	${MYPROJECT_ROOT_DIR}/documentation			$<TARGET_FILE_DIR:${PROJECT_NAME}>/documentation)
+	${MYPROJECT_ROOT_DIR}/documentation		$<TARGET_FILE_DIR:${PROJECT_NAME}>/documentation)
 #----------------------------------------
-################################################################################
 
 #EOF
