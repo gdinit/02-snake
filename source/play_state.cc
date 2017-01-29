@@ -1,6 +1,6 @@
 /* play_state.cc */
 
-#include <include/play_state.h>
+#include "play_state.h"
 
 extern std::unique_ptr <Settings>	SETTINGS;
 extern std::unique_ptr <Globals>	GLOBALS;

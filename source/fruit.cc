@@ -1,6 +1,6 @@
 /* fruit.cc */
 
-#include <include/fruit.h>
+#include "fruit.h"
 
 // TODO: REMOVE THIS DEBUG-ONLY
 // #include <iostream>
@@ -45,7 +45,7 @@ void Fruit::createNewFruit()
 
 	do {
 		// NEW CELL
-		candidateCell = dist1( mt1 );
+		candidateCell = static_cast <unsigned short int> ( dist1( mt1 ) );
 	} while ( cell->m_cellDetailsDatabase.at( candidateCell ).cellCurrentContent != 0 );
 
 	cell->m_cellDetailsDatabase.at( candidateCell ).cellCurrentContent = 3;

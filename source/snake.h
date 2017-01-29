@@ -3,11 +3,11 @@
 #ifndef SNAKE_H
 #define SNAKE_H
 
-#include <include/config.h>
+#include "config.h"
 // needed for collision detection/boundingbox
-#include <include/common.h>
-#include <include/fruit.h>
-#include <include/cell.h>
+#include "common.h"
+#include "fruit.h"
+#include "cell.h"
 
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
@@ -37,7 +37,6 @@ class Snake : public sf::Transformable, public sf::Drawable, private sf::NonCopy
 	protected:
 
 	private:
-		bool				m_snakeMustDie;
 		enum	{
 			DIRECTIONNONE = 0,
 			DIRECTIONLEFT,
@@ -45,9 +44,10 @@ class Snake : public sf::Transformable, public sf::Drawable, private sf::NonCopy
 			DIRECTIONUP,
 			DIRECTIONDOWN
 		};
-		signed short int		m_snakeMoveAccumulator;
-		unsigned short int		m_snakeHeadPositionId;
-		unsigned short int		m_snakeDirection;
+		unsigned short int		m_snakeDirection = DIRECTIONNONE;
+		bool				m_snakeMustDie = false;
+		signed short int		m_snakeMoveAccumulator = 0;
+		unsigned short int		m_snakeHeadPositionId = 0;
 		sf::Sound			m_soundAteFruit;
 		sf::SoundBuffer			m_bufferAteFruit;
 		sf::Sound			m_soundBlip1;

@@ -9,10 +9,11 @@
 #ifndef  COMMON_H
 #define  COMMON_H
 
-#include <include/config.h>
-#include <include/globals.h>
+#include "config.h"
+#include "globals.h"
 // needed for centerOrigin
-#include <include/utility.h>
+#include "utility.h"
+#include "game_objects.h"
 
 #include <SFML/Graphics.hpp>
 

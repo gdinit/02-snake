@@ -3,12 +3,12 @@
 #ifndef INTRO_STATE_H
 #define INTRO_STATE_H
 
-#include <include/state.h>
-#include <include/state_machine.h>
-#include <include/play_state.h>
-#include <include/config.h>
+#include "state.h"
+#include "state_machine.h"
+#include "play_state.h"
+#include "config.h"
 // needed for centerOrigin
-#include <include/utility.h>
+#include "utility.h"
 
 #include <SFML/System/Time.hpp>
 #include <SFML/System/Clock.hpp>

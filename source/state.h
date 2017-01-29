@@ -4,9 +4,9 @@
 #define STATE_H
 
 // make configuration values to all derived classes
-#include <include/config.h>
+#include "config.h"
 // forward declare Settings struct
-#include <include/globals.h>
+#include "globals.h"
 
 #include <SFML/System/Time.hpp>
 #include <SFML/System/Clock.hpp>

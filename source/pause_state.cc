@@ -1,6 +1,6 @@
 /* pause_state.cc */
 
-#include <include/pause_state.h>
+#include "pause_state.h"
 
 extern std::unique_ptr <Settings>	SETTINGS;
 // needed for mustDie

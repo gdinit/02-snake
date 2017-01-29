@@ -3,7 +3,7 @@
 #ifndef CONFIG_H
 #define CONFIG_H
 
-#include <include/globals.h>
+#include "globals.h"
 
 // needed for window_title etc.
 #include <string>
@@ -69,15 +69,17 @@ constexpr float			CONFIG_BORDER_THICKNESS { 12.f };
 // PREGAME ANIMATION
 constexpr float			CONFIG_PREGAME_ANIMATION_STEP_DURATION { .50f };
 constexpr float			CONFIG_PREGAME_ANIMATION_POS_X { CONFIG_WIN_WIDTH / 2 };
-constexpr float			CONFIG_PREGAME_ANIMATION_POS_Y { CONFIG_WIN_HEIGHT* 0.38 };
+constexpr float			CONFIG_PREGAME_ANIMATION_POS_Y { CONFIG_WIN_HEIGHT* 0.38f };
 // SCORE
-constexpr float			CONFIG_SCORE_STEP { 125.f };
+// constexpr float			CONFIG_SCORE_STEP { 125.f };
+constexpr signed long int	CONFIG_SCORE_STEP = { 125 };
 // FRUIT
 constexpr float			CONFIG_NEW_FRUIT_MIN_DISTANCE_TO_HEAD { CONFIG_WIN_WIDTH / 3 };
 // GAME SPEED
 constexpr float			CONFIG_ACCUMULATOR_VALUE { 9.f };
 // GAME MISC OPTIONS
-constexpr float			CONFIG_GROWTH_MULTIPLIER_VALUE { 2.f };
+// constexpr float			CONFIG_GROWTH_MULTIPLIER_VALUE { 2 };
+constexpr signed short int	CONFIG_GROWTH_MULTIPLIER_VALUE = { 2 };
 /*
         FRUIT #			GROWTH CELLS
         1			2

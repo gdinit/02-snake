@@ -1,6 +1,6 @@
 /* main.cc */
 
-#include <include/main.h>
+#include "main.h"
 
 int main()
 {

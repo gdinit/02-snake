@@ -6,7 +6,6 @@ project(snake)
 set(PROJECT_SOURCE_DIR	"${CMAKE_SOURCE_DIR}/source" CACHE PATH "source files")
 get_filename_component(MYPROJECT_ROOT_DIR ${PROJECT_SOURCE_DIR} DIRECTORY)
 list(APPEND CMAKE_MODULE_PATH	"${PROJECT_SOURCE_DIR}/cmake/modules")
-list(APPEND CMAKE_INCLUDE_PATH	"${PROJECT_SOURCE_DIR}/include")
 add_subdirectory(source)
 
 #EOF

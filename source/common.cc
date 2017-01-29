@@ -1,6 +1,6 @@
 /* common.cc */
 
-#include <include/common.h>
+#include "common.h"
 
 extern std::unique_ptr <Settings>	SETTINGS;
 extern std::unique_ptr <Globals>	GLOBALS;

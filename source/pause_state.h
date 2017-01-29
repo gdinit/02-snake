@@ -3,13 +3,13 @@
 #ifndef PAUSE_STATE_H
 #define PAUSE_STATE_H
 
-#include <include/state.h>
-#include <include/state_machine.h>
-#include <include/config.h>
-#include <include/globals.h>
+#include "state.h"
+#include "state_machine.h"
+#include "config.h"
+#include "globals.h"
 // needed for centerOrigin
-#include <include/utility.h>
-#include <include/game_objects.h>
+#include "utility.h"
+#include "game_objects.h"
 
 #include <SFML/Graphics/Sprite.hpp>
 #include <SFML/Graphics/Texture.hpp>

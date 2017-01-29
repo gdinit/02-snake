@@ -1,6 +1,6 @@
 /* state_machine.cc */
 
-#include <include/state_machine.h>
+#include "state_machine.h"
 
 StateMachine::StateMachine()
 	: m_resume{ false }

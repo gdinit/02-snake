@@ -3,12 +3,12 @@
 #ifndef MAIN_MENU_STATE_H
 #define MAIN_MENU_STATE_H
 
-#include <include/state.h>
-#include <include/state_machine.h>
-#include <include/config.h>
+#include "state.h"
+#include "state_machine.h"
+#include "config.h"
 // needed for centerOrigin
-#include <include/utility.h>
-#include <include/play_state.h>
+#include "utility.h"
+#include "play_state.h"
 
 #include <SFML/Graphics/Sprite.hpp>
 #include <SFML/Graphics/Texture.hpp>

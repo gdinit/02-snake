@@ -1,6 +1,6 @@
 /* cell.cc */
 
-#include <include/cell.h>
+#include "cell.h"
 
 extern std::unique_ptr <Settings>	SETTINGS;
 extern std::unique_ptr <Globals>	GLOBALS;
@@ -46,7 +46,8 @@ void Cell::newRound()
 		m_cellDetailsDatabase.emplace_back( tmprecord );
 
 		m_cellSpriteDatabase.emplace_back( sf::Sprite( m_squareTexture ) );
-		m_cellSpriteDatabase [ n ].setPosition( ( curColumn * 16 ), ( curRow * 16 ) );
+		m_cellSpriteDatabase [ n ].setPosition( static_cast <float> ( curColumn * 16 ), ( static_cast <float> ( curRow * 16 ) ) );
+
 		++rowCounter;
 	}
 	std::cout << "SUCCESS: Created cells in the database.\n";// TODO remove debug

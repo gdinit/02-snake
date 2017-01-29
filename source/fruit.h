@@ -3,10 +3,10 @@
 #ifndef FRUIT_H
 #define FRUIT_H
 
-#include <include/snake.h>
-#include <include/config.h>
+#include "snake.h"
+#include "config.h"
 // needed for collision detection/boundingbox
-#include <include/common.h>
+#include "common.h"
 
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>

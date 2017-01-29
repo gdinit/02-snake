@@ -1,6 +1,6 @@
 /* state.cc */
 
-#include <include/state.h>
+#include "state.h"
 
 const sf::Time State::TimePerFrame = sf::seconds( 1.f / CONFIG_DESIRED_FPS_FLOAT );
 
@@ -206,12 +206,7 @@ int State::getStateAgeAsSeconds()
 
 	tmp = m_stateBirthdate.getElapsedTime();
 
-	signed short int	n = -1;
-
-	// we don't need this -- adding just to quiet cppcheck!
-	n = n - 1;
-
-	n = std::round( tmp.asSeconds() );
+	signed short int	n = static_cast <signed short int> ( std::round( tmp.asSeconds() ) );
 
 	return n;
 }

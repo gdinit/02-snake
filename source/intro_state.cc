@@ -1,6 +1,6 @@
 /* intro_state.cc */
 
-#include <include/intro_state.h>
+#include "intro_state.h"
 
 IntroState::IntroState( StateMachine &	machine,
 	sf::RenderWindow &		window,

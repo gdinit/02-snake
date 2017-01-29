@@ -3,7 +3,7 @@
 #ifndef STATE_MACHINE_H
 #define STATE_MACHINE_H
 
-#include <include/state.h>
+#include "state.h"
 
 #include <SFML/System/Time.hpp>
 #include <SFML/System/Clock.hpp>

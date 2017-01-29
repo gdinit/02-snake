@@ -1,6 +1,6 @@
 /* snake.cc */
 
-#include <include/snake.h>
+#include "snake.h"
 
 extern std::unique_ptr <Settings>	SETTINGS;
 extern std::unique_ptr <Globals>	GLOBALS;

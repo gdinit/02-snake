@@ -1,6 +1,6 @@
 /* main_menu_state.cc */
 
-#include <include/main_menu_state.h>
+#include "main_menu_state.h"
 
 extern std::unique_ptr <Globals> GLOBALS;
 
@@ -41,7 +41,7 @@ void MainMenuState::initializeState()
 
 	// PlayMenuButton ======================
 	m_sprPlay.setTexture( m_textureWhite );
-	m_sprPlay.setTextureRect( sf::IntRect( 0, 0, CONFIG_MENU_BOX_WIDTH, CONFIG_MENU_BOX_HEIGHT ) );
+	m_sprPlay.setTextureRect( sf::IntRect( 0, 0, static_cast <short int> ( CONFIG_MENU_BOX_WIDTH ), static_cast <short int> ( CONFIG_MENU_BOX_HEIGHT ) ) );
 	m_sprPlay.setOrigin( CONFIG_MENU_BOX_WIDTH / 2.f, CONFIG_MENU_BOX_HEIGHT / 2.f );
 	m_sprPlay.setPosition( ( m_worldView.getSize().x / 2 ), ( m_worldView.getSize().y * CONFIG_MENU_BUTTON_1 ) );
 	m_sprPlayNeedSFX = true;
@@ -57,7 +57,7 @@ void MainMenuState::initializeState()
 
 	// CreditsMenuButton ===================
 	m_sprCredits.setTexture( m_textureWhite );
-	m_sprCredits.setTextureRect( sf::IntRect( 0, 0, CONFIG_MENU_BOX_WIDTH, CONFIG_MENU_BOX_HEIGHT ) );
+	m_sprCredits.setTextureRect( sf::IntRect( 0, 0, static_cast <short int> ( CONFIG_MENU_BOX_WIDTH ), static_cast <short int> ( CONFIG_MENU_BOX_HEIGHT ) ) );
 	m_sprCredits.setOrigin( CONFIG_MENU_BOX_WIDTH / 2.f, CONFIG_MENU_BOX_HEIGHT / 2.f );
 	m_sprCredits.setPosition( ( m_worldView.getSize().x / 2 ), ( m_worldView.getSize().y * CONFIG_MENU_BUTTON_2 ) );
 	m_sprCreditsNeedSFX = true;
@@ -73,7 +73,7 @@ void MainMenuState::initializeState()
 
 	// QuitMenuButton ======================
 	m_sprQuit.setTexture( m_textureWhite );
-	m_sprQuit.setTextureRect( sf::IntRect( 0, 0, CONFIG_MENU_BOX_WIDTH, CONFIG_MENU_BOX_HEIGHT ) );
+	m_sprQuit.setTextureRect( sf::IntRect( 0, 0, static_cast <short int> ( CONFIG_MENU_BOX_WIDTH ), static_cast <short int> ( CONFIG_MENU_BOX_HEIGHT ) ) );
 	m_sprQuit.setOrigin( CONFIG_MENU_BOX_WIDTH / 2.f, CONFIG_MENU_BOX_HEIGHT / 2.f );
 	m_sprQuit.setPosition( ( m_worldView.getSize().x / 2 ), ( m_worldView.getSize().y * CONFIG_MENU_BUTTON_3 ) );
 	m_sprQuitNeedSFX = true;

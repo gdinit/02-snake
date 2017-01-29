@@ -1,6 +1,6 @@
 /* game_objects.cc */
 
-#include <include/game_objects.h>
+#include "game_objects.h"
 
 // CREATE GAME OBJECTS
 std::unique_ptr <Settings>	SETTINGS = std::make_unique <Settings> ();

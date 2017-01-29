@@ -3,13 +3,13 @@
 #ifndef MAIN_H
 #define MAIN_H
 
-#include <include/application.h>
-#include <include/globals.h>
+#include "application.h"
+#include "globals.h"
+
 // needed for exception handling in main
 #include <stdexcept>
 // needed for exception handling in main
 #include <iostream>
-
 #if defined __APPLE__
 // Fix for `cwd issue`. Temporary, till we get the bundle build system in CMake: BEGIN
 #include <fstream>

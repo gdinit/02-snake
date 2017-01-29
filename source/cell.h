@@ -3,7 +3,8 @@
 #ifndef CELL_H
 #define CELL_H
 
-#include <include/config.h>
+#include "config.h"
+#include "game_objects.h"
 
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
