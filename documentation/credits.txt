@@ -1,5 +1,6 @@
 In random order.
-If you have any comments, correction requests, please let me know by creating an issue at GitHub here https://github.com/gdinit/02-snake/issues
+If you have any comments, correction requests, please let me know by creating an
+issue at project's GitHub page here https://github.com/gdinit/
 
 * This game is built on SFML the very awesome C++ library 'Simple and Fast Multimedia Library'
 	http://www.sfml-dev.org/ Copyright © Laurent Gomila
