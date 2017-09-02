@@ -1,5 +1,5 @@
 ################################################################################
-gdinit's Snake remake -- Source Code and Project Files
+gdinit's Classic Game Clones -- Source Code and Project Files
 ################################################################################
 
 This file explains how to build the code.
