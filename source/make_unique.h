@@ -27,7 +27,8 @@ namespace std
 	template<class T, class ... Args>
 	typename _Unique_if <T>::_Single_object
 	make_unique( Args && ... args ) {
-		return unique_ptr <T> ( new T( std::forward <Args> ( args ) ... ) );
+		return unique_ptr <T> ( new T( std::forward <Args> (
+					args ) ... ) );
 	}
 
 	template<class T>

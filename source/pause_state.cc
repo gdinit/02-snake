@@ -10,7 +10,8 @@ extern std::unique_ptr <Fruit>		fruit;
 extern std::unique_ptr <Common>		common;
 extern std::unique_ptr <Cell>		cell;
 
-PauseState::PauseState( StateMachine &machine, sf::RenderWindow &window, bool replace )
+PauseState::PauseState( StateMachine &machine, sf::RenderWindow &window, bool
+	replace )
 	: State{ machine, window, replace }
 {
 	initializeState();
@@ -28,7 +29,9 @@ void PauseState::initializeState()
 	m_statisticsText.setPosition( 5.f, 5.f );
 	m_statisticsText.setCharacterSize( 12u );
 	m_statisticsText.setFillColor( sf::Color::White );
-	updateDebugOverlayTextIfEnabled( true );// give me stats in the first frame, but first make up some plausible values
+	updateDebugOverlayTextIfEnabled( true );// give me stats in the first
+						// frame, but first make up some
+						// plausible values
 
 	// PressToContinue Text Line 1
 	m_fontPressToContinue.loadFromFile( "assets/fonts/sansation.ttf" );
@@ -37,16 +40,19 @@ void PauseState::initializeState()
 	m_textPressToContinue.setFillColor( sf::Color::White );
 	m_textPressToContinue.setString( "GAME PAUSED" );
 	centerOrigin( m_textPressToContinue );
-	m_textPressToContinue.setPosition( ( m_worldView.getSize().x / 2 ), ( m_worldView.getSize().y / 2 ) );
+	m_textPressToContinue.setPosition( ( m_worldView.getSize().x / 2 )
+		, ( m_worldView.getSize().y / 2 ) );
 
 	// PressToContinue Text Line 2
 	m_fontPressToContinueLine2.loadFromFile( "assets/fonts/sansation.ttf" );
 	m_textPressToContinueLine2.setFont( m_fontPressToContinue );
 	m_textPressToContinueLine2.setCharacterSize( 15u );
 	m_textPressToContinueLine2.setFillColor( sf::Color::White );
-	m_textPressToContinueLine2.setString( "\nPress ESC, PauseBreak, or P to continue" );
+	m_textPressToContinueLine2.setString(
+		"\nPress ESC, PauseBreak, or P to continue" );
 	centerOrigin( m_textPressToContinueLine2 );
-	m_textPressToContinueLine2.setPosition( ( m_worldView.getSize().x / 2 ), ( ( m_worldView.getSize().y / 2 ) + 50 ) );
+	m_textPressToContinueLine2.setPosition( ( m_worldView.getSize().x / 2 )
+		, ( ( m_worldView.getSize().y / 2 ) + 50 ) );
 }
 
 void PauseState::pause()
@@ -76,7 +82,8 @@ void PauseState::update()
 		m_statisticsUpdateTime += m_elapsedTime;
 		m_statisticsNumFrames += 1;
 		// update statsText only once a second
-		// however, if just entered this state (i.e.: this is the 2nd updateStats), then immediately update
+		// however, if just entered this state (i.e.: this is the 2nd
+		// updateStats), then immediately update
 		if ( m_urgentUpdateNeeded > 0 ) {
 			// update now!
 			--m_urgentUpdateNeeded;
@@ -86,7 +93,8 @@ void PauseState::update()
 		}
 		if ( m_statisticsUpdateTime >= sf::seconds( 1.0f ) ) {
 			if ( m_statisticsNumFrames <= 1 ) {
-				// if we're playing catchup, don't bother with debugOverlayText
+				// if we're playing catchup, don't bother with
+				// debugOverlayText
 				break;
 			}
 
@@ -130,7 +138,8 @@ void PauseState::processEvents()
 						this->toggleDebugConsoleOutput();
 						break;
 					case sf::Keyboard::F4:
-						this->toggleDebugDynFPSConsoleOutput();
+						this->
+						toggleDebugDynFPSConsoleOutput();
 						break;
 					default:
 						break;

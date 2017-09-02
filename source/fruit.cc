@@ -22,7 +22,8 @@ void Fruit::createNewFruit()
 {
 	// ****************************************
 	// REPOSITION THE FRUIT
-	// TODO: move this to fruit class && TODO: move this to a separate function
+	// TODO: move this to fruit class && TODO: move this to a separate
+	// function
 	// ****************************************
 	++m_fruitID;
 
@@ -36,17 +37,22 @@ void Fruit::createNewFruit()
 
 	// set up RNG
 	std::mt19937				mt1;
-	auto					seed1 = std::chrono::high_resolution_clock::now().time_since_epoch().count();
+	auto					seed1 =
+		std::chrono::high_resolution_clock::now().time_since_epoch().
+		count();
 	mt1.seed( ( unsigned long )seed1 );
 	// TODO remove hardcoded 115 and improve ranposgen code
-	std::uniform_real_distribution <>	dist1( 115, ( CONFIG_ROWS * CONFIG_COLUMNS ) );
+	std::uniform_real_distribution <>	dist1( 115, ( CONFIG_ROWS *
+							      CONFIG_COLUMNS ) );
 
 	unsigned short int			candidateCell = 0;
 
 	do {
 		// NEW CELL
-		candidateCell = static_cast <unsigned short int> ( dist1( mt1 ) );
-	} while ( cell->m_cellDetailsDatabase.at( candidateCell ).cellCurrentContent != 0 );
+		candidateCell = static_cast <unsigned short int> ( dist1(
+									   mt1 ) );
+	} while ( cell->m_cellDetailsDatabase.at(
+			  candidateCell ).cellCurrentContent != 0 );
 
 	cell->m_cellDetailsDatabase.at( candidateCell ).cellCurrentContent = 3;
 }

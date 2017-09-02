@@ -33,7 +33,9 @@ namespace sf
 class IntroState : public State
 {
 	public:
-		IntroState( StateMachine &machine,                sf::RenderWindow &window,                 bool replace = true );
+		IntroState( StateMachine &machine
+		, sf::RenderWindow &window,                 bool replace =
+			true );
 		void	initializeState();
 		void	processEvents();
 		void	update();

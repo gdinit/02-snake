@@ -12,28 +12,30 @@
 
 #include <iostream>
 
-class Cell : public sf::Transformable, public sf::Drawable, private sf::NonCopyable
+class Cell : public sf::Transformable, public sf::Drawable, private
+	   sf::NonCopyable
 {
 	public:
 		Cell();
 		virtual ~Cell();
 		void	update( sf::Time timeSinceLastUpdate );
-		void	draw( sf::RenderTarget &target, sf::RenderStates states ) const;
+		void	draw( sf::RenderTarget &target, sf::RenderStates
+		states ) const;
 		void	newRound();
 
 	protected:
-		friend class Snake;	// Snake now can see the internals of Cell	// TODO consider removing this?
-		friend class Fruit;	// Fruit now can see the internals of Cell	// TODO consider removing this?
+		friend class Snake;
+		friend class Fruit;
 
 	private:
 		enum	{
-			EMPTY = 0,
-			BORDER,	// 1
-			SNAKE,	// 2
-			FRUIT,	// 3
-			OBSTACLE,// 4
-			HUD,	// 5
-			DEBUGMARKED	// 6
+			EMPTY = 0
+			, BORDER// 1
+			, SNAKE	// 2
+			, FRUIT	// 3
+			, OBSTACLE	// 4
+			, HUD	// 5
+			, DEBUGMARKED	// 6
 		};
 		struct CellDetails
 		{

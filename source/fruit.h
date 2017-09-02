@@ -16,7 +16,8 @@
 // required for RNG
 #include <chrono>
 
-class Fruit : public sf::Transformable, public sf::Drawable, private sf::NonCopyable
+class Fruit : public sf::Transformable, public sf::Drawable, private
+	    sf::NonCopyable
 {
 	public:
 		Fruit();
@@ -24,7 +25,8 @@ class Fruit : public sf::Transformable, public sf::Drawable, private sf::NonCopy
 		virtual ~Fruit();
 
 		void	update( sf::Time timeSinceLastUpdate );
-		void	draw( sf::RenderTarget &target, sf::RenderStates states ) const;
+		void	draw( sf::RenderTarget &target, sf::RenderStates
+		states ) const;
 		void	createNewFruit();
 		void	setFruitIdToZero();
 		// float	getTop()     const noexcept;
@@ -33,7 +35,8 @@ class Fruit : public sf::Transformable, public sf::Drawable, private sf::NonCopy
 		// float	getRight()   const noexcept;
 
 	protected:
-		friend class Snake;	// Snake now can see the internals of Fruit
+		friend class Snake;	// Snake now can see the internals of
+					// Fruit
 
 	private:
 		float	getX()       const noexcept;

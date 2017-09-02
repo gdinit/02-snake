@@ -75,7 +75,8 @@ void Snake::collisionDetectRespond( void ) noexcept
 
 		if ( GLOBALS->livesLeft >= 1 ) {
 			GLOBALS->livesLeft = GLOBALS->livesLeft - 1;
-			// TODO change this to a new sound (death sound. less dramatic then new/planned GameOver sound)
+			// TODO change this to a new sound (death sound. less
+			// dramatic then new/planned GameOver sound)
 			m_soundBlip1.play();
 			fruit->createNewFruit();
 			newSnake();
@@ -106,46 +107,162 @@ void Snake::update( sf::Time timeSinceLastUpdate )
 			signed int	newPos = m_snakeHeadPositionId;
 
 			switch ( m_snakeDirection ) {
-				// killer cells are	: 1 (border), 2 (snake), 4 (obstacle), 5 (hud)
-				// legal moves are	: 0 (empty), 3 (fruit), 6 (debugmarked) - anything else kills the snake!
+				// killer cells are	: 1 (border), 2 (snake),
+				// 4 (obstacle), 5 (hud)
+				// legal moves are	: 0 (empty), 3 (fruit),
+				// 6 (debugmarked) - anything else kills the
+				// snake!
 
 				case DIRECTIONNONE:
 					break;
 
 				case DIRECTIONRIGHT:
 					newPos = m_snakeHeadPositionId + 1;
-					if ( ( cell->m_cellDetailsDatabase.at( newPos ).cellCurrentContent == 1 ) || ( cell->m_cellDetailsDatabase.at( newPos ).cellCurrentContent == 2 ) || ( cell->m_cellDetailsDatabase.at( newPos ).cellCurrentContent == 4 ) || ( cell->m_cellDetailsDatabase.at( newPos ).cellCurrentContent == 5 ) ) {
-						// ILLEGAL MOVE -- DO NOT ADVANCE
+					if ( ( cell->m_cellDetailsDatabase.at(
+						       newPos ).
+					       cellCurrentContent == 1 ) ||
+					     ( cell->m_cellDetailsDatabase.at(
+						       newPos ).
+					       cellCurrentContent == 2 ) ||
+					     ( cell->m_cellDetailsDatabase.at(
+						       newPos ).
+					       cellCurrentContent == 4 ) ||
+					     ( cell->m_cellDetailsDatabase.at(
+						       newPos ).
+					       cellCurrentContent == 5 ) ) {
+						// ILLEGAL MOVE -- DO NOT
+						// ADVANCE
 						m_snakeMustDie = true;
 
 						return;
 					} else {
 						// LEGAL MOVE -- DO ADVANCE
 
-						// MOVE -- mark new cell as snake body
+						// MOVE -- mark new cell as
+						// snake body
 						m_snakeHeadPositionId = newPos;
 
 						// FRUIT? CHECK & ACTION ON
-						if ( cell->m_cellDetailsDatabase.at( newPos ).cellCurrentContent == 3 ) {
-							// grow now but -- how many cells?
-							GLOBALS->snakeCellGrowthPendingCount = ( GLOBALS->snakeCellGrowthPendingCount ) + ( ( fruit->m_fruitID * CONFIG_GROWTH_MULTIPLIER_VALUE ) );
-							m_soundAteFruit.play();	// MUSIC TO CELEBRATE
-							GLOBALS->currentScore = GLOBALS->currentScore + CONFIG_SCORE_STEP;	// BUMP SCORE
-							fruit->createNewFruit();// NEED TO  SPAWN A NEW FRUIT
+						if ( cell->m_cellDetailsDatabase
+						     .at(
+							     newPos ).
+						     cellCurrentContent ==
+						     3 ) {
+							// grow now but -- how
+							// many cells?
+							GLOBALS->
+							snakeCellGrowthPendingCount
+								=
+									(
+										GLOBALS
+										->
+										snakeCellGrowthPendingCount )
+									+ ( (
+										    fruit
+										    ->
+										    m_fruitID
+										    *
+										    CONFIG_GROWTH_MULTIPLIER_VALUE ) );
+							m_soundAteFruit.play();	//
+										//
+										//
+										//
+										//
+										//
+										// MUSIC
+										//
+										//
+										//
+										//
+										//
+										// TO
+										//
+										//
+										//
+										//
+										//
+										// CELEBRATE
+							GLOBALS->currentScore =
+								GLOBALS->
+								currentScore +
+								CONFIG_SCORE_STEP;						//
+																//
+																//
+																//
+																//
+																//
+																// BUMP
+																//
+																//
+																//
+																//
+																//
+																// SCORE
+							fruit->createNewFruit();//
+										//
+										//
+										//
+										//
+										//
+										// NEED
+										//
+										//
+										//
+										//
+										//
+										// TO
+										//
+										//
+										//
+										//
+										//
+										//
+										// SPAWN
+										//
+										//
+										//
+										//
+										//
+										// A
+										//
+										//
+										//
+										//
+										//
+										// NEW
+										//
+										//
+										//
+										//
+										//
+										// FRUIT
 						}
 
 						// mark the new cell as snake
-						cell->m_cellDetailsDatabase.at( m_snakeHeadPositionId ).cellCurrentContent = 2;
-						// add new snakebodycell to the list of known snakeCells
-						m_snakeCells.push_back( m_snakeHeadPositionId );
+						cell->m_cellDetailsDatabase.at(
+							m_snakeHeadPositionId ).
+						cellCurrentContent = 2;
+						// add new snakebodycell to the
+						// list of known snakeCells
+						m_snakeCells.push_back(
+							m_snakeHeadPositionId );
 
-						// KEEP TAIL INTACT (to grow) or SHRINK THE TAIL?
-						if ( GLOBALS->snakeCellGrowthPendingCount > 0 ) {
-							// GROW HERE by doing nothing
-							--GLOBALS->snakeCellGrowthPendingCount;
+						// KEEP TAIL INTACT (to grow) or
+						// SHRINK THE TAIL?
+						if ( GLOBALS->
+						     snakeCellGrowthPendingCount
+						     > 0 ) {
+							// GROW HERE by doing
+							// nothing
+							--GLOBALS->
+							snakeCellGrowthPendingCount;
 						} else {
 							// SHRINK HERE
-							cell->m_cellDetailsDatabase.at( tailPos ).cellCurrentContent = 0;
+							cell->
+							m_cellDetailsDatabase.at(
+								tailPos ).
+							cellCurrentContent =
+								0;
 							m_snakeCells.pop_front();
 						}
 					}
@@ -153,119 +270,458 @@ void Snake::update( sf::Time timeSinceLastUpdate )
 
 				case DIRECTIONLEFT:
 					newPos = m_snakeHeadPositionId - 1;
-					if ( ( cell->m_cellDetailsDatabase.at( newPos ).cellCurrentContent == 1 ) || ( cell->m_cellDetailsDatabase.at( newPos ).cellCurrentContent == 2 ) || ( cell->m_cellDetailsDatabase.at( newPos ).cellCurrentContent == 4 ) || ( cell->m_cellDetailsDatabase.at( newPos ).cellCurrentContent == 5 ) ) {
+					if ( ( cell->m_cellDetailsDatabase.at(
+						       newPos ).
+					       cellCurrentContent == 1 ) ||
+					     ( cell->m_cellDetailsDatabase.at(
+						       newPos ).
+					       cellCurrentContent == 2 ) ||
+					     ( cell->m_cellDetailsDatabase.at(
+						       newPos ).
+					       cellCurrentContent == 4 ) ||
+					     ( cell->m_cellDetailsDatabase.at(
+						       newPos ).
+					       cellCurrentContent == 5 ) ) {
 						m_snakeMustDie = true;
 
 						return;
 					} else {
 						// LEGAL MOVE -- DO ADVANCE
 
-						// MOVE -- mark new cell as snake body
+						// MOVE -- mark new cell as
+						// snake body
 						m_snakeHeadPositionId = newPos;
 
 						// FRUIT? CHECK & ACTION ON
-						if ( cell->m_cellDetailsDatabase.at( newPos ).cellCurrentContent == 3 ) {
-							// grow now but -- how many cells?
-							GLOBALS->snakeCellGrowthPendingCount = ( GLOBALS->snakeCellGrowthPendingCount ) + ( ( fruit->m_fruitID * CONFIG_GROWTH_MULTIPLIER_VALUE ) );
-							m_soundAteFruit.play();	// MUSIC TO CELEBRATE
-							GLOBALS->currentScore = GLOBALS->currentScore + CONFIG_SCORE_STEP;	// BUMP SCORE
-							fruit->createNewFruit();// NEED TO  SPAWN A NEW FRUIT
+						if ( cell->m_cellDetailsDatabase
+						     .at(
+							     newPos ).
+						     cellCurrentContent ==
+						     3 ) {
+							// grow now but -- how
+							// many cells?
+							GLOBALS->
+							snakeCellGrowthPendingCount
+								=
+									(
+										GLOBALS
+										->
+										snakeCellGrowthPendingCount )
+									+ ( (
+										    fruit
+										    ->
+										    m_fruitID
+										    *
+										    CONFIG_GROWTH_MULTIPLIER_VALUE ) );
+							m_soundAteFruit.play();	//
+										//
+										//
+										//
+										//
+										//
+										// MUSIC
+										//
+										//
+										//
+										//
+										//
+										// TO
+										//
+										//
+										//
+										//
+										//
+										// CELEBRATE
+							GLOBALS->currentScore =
+								GLOBALS->
+								currentScore +
+								CONFIG_SCORE_STEP;						//
+																//
+																//
+																//
+																//
+																//
+																// BUMP
+																//
+																//
+																//
+																//
+																//
+																// SCORE
+							fruit->createNewFruit();//
+										//
+										//
+										//
+										//
+										//
+										// NEED
+										//
+										//
+										//
+										//
+										//
+										// TO
+										//
+										//
+										//
+										//
+										//
+										//
+										// SPAWN
+										//
+										//
+										//
+										//
+										//
+										// A
+										//
+										//
+										//
+										//
+										//
+										// NEW
+										//
+										//
+										//
+										//
+										//
+										// FRUIT
 						}
 
 						// mark the new cell as snake
-						cell->m_cellDetailsDatabase.at( m_snakeHeadPositionId ).cellCurrentContent = 2;
-						// add new snakebodycell to the list of known snakeCells
-						m_snakeCells.push_back( m_snakeHeadPositionId );
+						cell->m_cellDetailsDatabase.at(
+							m_snakeHeadPositionId ).
+						cellCurrentContent = 2;
+						// add new snakebodycell to the
+						// list of known snakeCells
+						m_snakeCells.push_back(
+							m_snakeHeadPositionId );
 
-						// KEEP TAIL INTACT (to grow) or SHRINK THE TAIL?
-						if ( GLOBALS->snakeCellGrowthPendingCount > 0 ) {
-							// GROW HERE by doing nothing
-							--GLOBALS->snakeCellGrowthPendingCount;
+						// KEEP TAIL INTACT (to grow) or
+						// SHRINK THE TAIL?
+						if ( GLOBALS->
+						     snakeCellGrowthPendingCount
+						     > 0 ) {
+							// GROW HERE by doing
+							// nothing
+							--GLOBALS->
+							snakeCellGrowthPendingCount;
 						} else {
 							// SHRINK HERE
-							cell->m_cellDetailsDatabase.at( tailPos ).cellCurrentContent = 0;
+							cell->
+							m_cellDetailsDatabase.at(
+								tailPos ).
+							cellCurrentContent =
+								0;
 							m_snakeCells.pop_front();
 						}
 					}
 					break;
 
 				case DIRECTIONUP:
-					newPos = m_snakeHeadPositionId - CONFIG_COLUMNS;
-					if ( ( cell->m_cellDetailsDatabase.at( newPos ).cellCurrentContent == 1 ) || ( cell->m_cellDetailsDatabase.at( newPos ).cellCurrentContent == 2 ) || ( cell->m_cellDetailsDatabase.at( newPos ).cellCurrentContent == 4 ) || ( cell->m_cellDetailsDatabase.at( newPos ).cellCurrentContent == 5 ) ) {
+					newPos = m_snakeHeadPositionId -
+						CONFIG_COLUMNS;
+					if ( ( cell->m_cellDetailsDatabase.at(
+						       newPos ).
+					       cellCurrentContent == 1 ) ||
+					     ( cell->m_cellDetailsDatabase.at(
+						       newPos ).
+					       cellCurrentContent == 2 ) ||
+					     ( cell->m_cellDetailsDatabase.at(
+						       newPos ).
+					       cellCurrentContent == 4 ) ||
+					     ( cell->m_cellDetailsDatabase.at(
+						       newPos ).
+					       cellCurrentContent == 5 ) ) {
 						m_snakeMustDie = true;
 
 						return;
 					} else {
 						// LEGAL MOVE -- DO ADVANCE
 
-						// MOVE -- mark new cell as snake body
+						// MOVE -- mark new cell as
+						// snake body
 						m_snakeHeadPositionId = newPos;
 
 						// FRUIT? CHECK & ACTION ON
-						if ( cell->m_cellDetailsDatabase.at( newPos ).cellCurrentContent == 3 ) {
-							// grow now but -- how many cells?
-							GLOBALS->snakeCellGrowthPendingCount = ( GLOBALS->snakeCellGrowthPendingCount ) + ( ( fruit->m_fruitID * CONFIG_GROWTH_MULTIPLIER_VALUE ) );
-							m_soundAteFruit.play();	// MUSIC TO CELEBRATE
-							GLOBALS->currentScore = GLOBALS->currentScore + CONFIG_SCORE_STEP;	// BUMP SCORE
-							fruit->createNewFruit();// NEED TO  SPAWN A NEW FRUIT
+						if ( cell->m_cellDetailsDatabase
+						     .at(
+							     newPos ).
+						     cellCurrentContent ==
+						     3 ) {
+							// grow now but -- how
+							// many cells?
+							GLOBALS->
+							snakeCellGrowthPendingCount
+								=
+									(
+										GLOBALS
+										->
+										snakeCellGrowthPendingCount )
+									+ ( (
+										    fruit
+										    ->
+										    m_fruitID
+										    *
+										    CONFIG_GROWTH_MULTIPLIER_VALUE ) );
+							m_soundAteFruit.play();	//
+										//
+										//
+										//
+										//
+										//
+										// MUSIC
+										//
+										//
+										//
+										//
+										//
+										// TO
+										//
+										//
+										//
+										//
+										//
+										// CELEBRATE
+							GLOBALS->currentScore =
+								GLOBALS->
+								currentScore +
+								CONFIG_SCORE_STEP;						//
+																//
+																//
+																//
+																//
+																//
+																// BUMP
+																//
+																//
+																//
+																//
+																//
+																// SCORE
+							fruit->createNewFruit();//
+										//
+										//
+										//
+										//
+										//
+										// NEED
+										//
+										//
+										//
+										//
+										//
+										// TO
+										//
+										//
+										//
+										//
+										//
+										//
+										// SPAWN
+										//
+										//
+										//
+										//
+										//
+										// A
+										//
+										//
+										//
+										//
+										//
+										// NEW
+										//
+										//
+										//
+										//
+										//
+										// FRUIT
 						}
 
 						// mark the new cell as snake
-						cell->m_cellDetailsDatabase.at( m_snakeHeadPositionId ).cellCurrentContent = 2;
-						// add new snakebodycell to the list of known snakeCells
-						m_snakeCells.push_back( m_snakeHeadPositionId );
+						cell->m_cellDetailsDatabase.at(
+							m_snakeHeadPositionId ).
+						cellCurrentContent = 2;
+						// add new snakebodycell to the
+						// list of known snakeCells
+						m_snakeCells.push_back(
+							m_snakeHeadPositionId );
 
-						// KEEP TAIL INTACT (to grow) or SHRINK THE TAIL?
-						if ( GLOBALS->snakeCellGrowthPendingCount > 0 ) {
-							// GROW HERE by doing nothing
-							--GLOBALS->snakeCellGrowthPendingCount;
+						// KEEP TAIL INTACT (to grow) or
+						// SHRINK THE TAIL?
+						if ( GLOBALS->
+						     snakeCellGrowthPendingCount
+						     > 0 ) {
+							// GROW HERE by doing
+							// nothing
+							--GLOBALS->
+							snakeCellGrowthPendingCount;
 						} else {
 							// SHRINK HERE
-							cell->m_cellDetailsDatabase.at( tailPos ).cellCurrentContent = 0;
+							cell->
+							m_cellDetailsDatabase.at(
+								tailPos ).
+							cellCurrentContent =
+								0;
 							m_snakeCells.pop_front();
 						}
 					}
 					break;
 
 				case DIRECTIONDOWN:
-					newPos = m_snakeHeadPositionId + CONFIG_COLUMNS;
-					if ( ( cell->m_cellDetailsDatabase.at( newPos ).cellCurrentContent == 1 ) || ( cell->m_cellDetailsDatabase.at( newPos ).cellCurrentContent == 2 ) || ( cell->m_cellDetailsDatabase.at( newPos ).cellCurrentContent == 4 ) || ( cell->m_cellDetailsDatabase.at( newPos ).cellCurrentContent == 5 ) ) {
+					newPos = m_snakeHeadPositionId +
+						CONFIG_COLUMNS;
+					if ( ( cell->m_cellDetailsDatabase.at(
+						       newPos ).
+					       cellCurrentContent == 1 ) ||
+					     ( cell->m_cellDetailsDatabase.at(
+						       newPos ).
+					       cellCurrentContent == 2 ) ||
+					     ( cell->m_cellDetailsDatabase.at(
+						       newPos ).
+					       cellCurrentContent == 4 ) ||
+					     ( cell->m_cellDetailsDatabase.at(
+						       newPos ).
+					       cellCurrentContent == 5 ) ) {
 						m_snakeMustDie = true;
 
 						return;
 					} else {
 						// LEGAL MOVE -- DO ADVANCE
 
-						// MOVE -- mark new cell as snake body
+						// MOVE -- mark new cell as
+						// snake body
 						m_snakeHeadPositionId = newPos;
 
 						// FRUIT? CHECK & ACTION ON
-						if ( cell->m_cellDetailsDatabase.at( newPos ).cellCurrentContent == 3 ) {
-							// grow now but -- how many cells?
-							GLOBALS->snakeCellGrowthPendingCount = ( GLOBALS->snakeCellGrowthPendingCount ) + ( ( fruit->m_fruitID * CONFIG_GROWTH_MULTIPLIER_VALUE ) );
-							m_soundAteFruit.play();	// MUSIC TO CELEBRATE
-							GLOBALS->currentScore = GLOBALS->currentScore + CONFIG_SCORE_STEP;	// BUMP SCORE
-							fruit->createNewFruit();// NEED TO  SPAWN A NEW FRUIT
+						if ( cell->m_cellDetailsDatabase
+						     .at(
+							     newPos ).
+						     cellCurrentContent ==
+						     3 ) {
+							// grow now but -- how
+							// many cells?
+							GLOBALS->
+							snakeCellGrowthPendingCount
+								=
+									(
+										GLOBALS
+										->
+										snakeCellGrowthPendingCount )
+									+ ( (
+										    fruit
+										    ->
+										    m_fruitID
+										    *
+										    CONFIG_GROWTH_MULTIPLIER_VALUE ) );
+							m_soundAteFruit.play();	//
+										//
+										//
+										//
+										//
+										//
+										// MUSIC
+										//
+										//
+										//
+										//
+										//
+										// TO
+										//
+										//
+										//
+										//
+										//
+										// CELEBRATE
+							GLOBALS->currentScore =
+								GLOBALS->
+								currentScore +
+								CONFIG_SCORE_STEP;						//
+																//
+																//
+																//
+																//
+																//
+																// BUMP
+																//
+																//
+																//
+																//
+																//
+																// SCORE
+							fruit->createNewFruit();//
+										//
+										//
+										//
+										//
+										//
+										// NEED
+										//
+										//
+										//
+										//
+										//
+										// TO
+										//
+										//
+										//
+										//
+										//
+										//
+										// SPAWN
+										//
+										//
+										//
+										//
+										//
+										// A
+										//
+										//
+										//
+										//
+										//
+										// NEW
+										//
+										//
+										//
+										//
+										//
+										// FRUIT
 						}
 
 						// mark the new cell as snake
-						cell->m_cellDetailsDatabase.at( m_snakeHeadPositionId ).cellCurrentContent = 2;
-						// add new snakebodycell to the list of known snakeCells
-						m_snakeCells.push_back( m_snakeHeadPositionId );
+						cell->m_cellDetailsDatabase.at(
+							m_snakeHeadPositionId ).
+						cellCurrentContent = 2;
+						// add new snakebodycell to the
+						// list of known snakeCells
+						m_snakeCells.push_back(
+							m_snakeHeadPositionId );
 
-						// KEEP TAIL INTACT (to grow) or SHRINK THE TAIL?
-						if ( GLOBALS->snakeCellGrowthPendingCount > 0 ) {
-							// GROW HERE by doing nothing
-							--GLOBALS->snakeCellGrowthPendingCount;
+						// KEEP TAIL INTACT (to grow) or
+						// SHRINK THE TAIL?
+						if ( GLOBALS->
+						     snakeCellGrowthPendingCount
+						     > 0 ) {
+							// GROW HERE by doing
+							// nothing
+							--GLOBALS->
+							snakeCellGrowthPendingCount;
 						} else {
 							// SHRINK HERE
-							cell->m_cellDetailsDatabase.at( tailPos ).cellCurrentContent = 0;
+							cell->
+							m_cellDetailsDatabase.at(
+								tailPos ).
+							cellCurrentContent =
+								0;
 							m_snakeCells.pop_front();
 						}
 					}
 					break;
 			}
-			std::deque <unsigned short int>::iterator it = m_snakeCells.begin();
+			std::deque <unsigned short int>::iterator it =
+				m_snakeCells.begin();
 		}
 	}
 }
@@ -275,13 +731,17 @@ void Snake::draw( sf::RenderTarget &target, sf::RenderStates states ) const {
 
 void Snake::processHumanDirectionKeypress()
 {
-	if ( GLOBALS->moveLeftRequestActive && m_snakeDirection != DIRECTIONRIGHT ) {
+	if ( GLOBALS->moveLeftRequestActive && m_snakeDirection !=
+	     DIRECTIONRIGHT ) {
 		m_snakeDirection = DIRECTIONLEFT;
-	} else if ( GLOBALS->moveRightRequestActive && m_snakeDirection != DIRECTIONLEFT ) {
+	} else if ( GLOBALS->moveRightRequestActive && m_snakeDirection !=
+		    DIRECTIONLEFT ) {
 		m_snakeDirection = DIRECTIONRIGHT;
-	} else if ( GLOBALS->moveUpRequestActive && m_snakeDirection != DIRECTIONDOWN ) {
+	} else if ( GLOBALS->moveUpRequestActive && m_snakeDirection !=
+		    DIRECTIONDOWN ) {
 		m_snakeDirection = DIRECTIONUP;
-	} else if ( GLOBALS->moveDownRequestActive && m_snakeDirection != DIRECTIONUP ) {
+	} else if ( GLOBALS->moveDownRequestActive && m_snakeDirection !=
+		    DIRECTIONUP ) {
 		m_snakeDirection = DIRECTIONDOWN;
 	}
 }

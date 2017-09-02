@@ -31,7 +31,8 @@ class StateMachine
 	public:
 		StateMachine();
 
-		void				run( std::unique_ptr <State> state );
+		void				run(
+		std::unique_ptr <State> state );
 
 		void				nextState();
 		void				lastState();
@@ -44,9 +45,9 @@ class StateMachine
 		void quit() { m_running = false; }
 
 		template<typename T>
-		static std::unique_ptr <T>	build( StateMachine &	machine,
-		sf::RenderWindow &					window,
-		bool							replace = true );
+		static std::unique_ptr <T>	build( StateMachine &machine
+		, sf::RenderWindow &window
+		, bool replace = true );
 
 	private:
 		// The stack of states
@@ -57,9 +58,9 @@ class StateMachine
 };
 
 template<typename T>
-std::unique_ptr <T> StateMachine::build( StateMachine & machine,
-	sf::RenderWindow &				window,
-	bool						replace )
+std::unique_ptr <T> StateMachine::build( StateMachine &machine
+	, sf::RenderWindow &window
+	, bool replace )
 {
 	return std::unique_ptr <T> ( new T( machine, window, replace ) );
 }

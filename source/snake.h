@@ -20,13 +20,15 @@
 // container to store snakeCells
 #include <deque>
 
-class Snake : public sf::Transformable, public sf::Drawable, private sf::NonCopyable
+class Snake : public sf::Transformable, public sf::Drawable, private
+	    sf::NonCopyable
 {
 	public:
 		Snake();
 		virtual ~Snake();
 		void	update( sf::Time timeSinceLastUpdate );
-		void	draw( sf::RenderTarget &target, sf::RenderStates states ) const;
+		void	draw( sf::RenderTarget &target, sf::RenderStates
+		states ) const;
 		void	startNewGame();
 		void	newSnake();
 		void	collisionDetectRespond( void ) noexcept;
@@ -38,13 +40,14 @@ class Snake : public sf::Transformable, public sf::Drawable, private sf::NonCopy
 
 	private:
 		enum	{
-			DIRECTIONNONE = 0,
-			DIRECTIONLEFT,
-			DIRECTIONRIGHT,
-			DIRECTIONUP,
-			DIRECTIONDOWN
+			DIRECTIONNONE = 0
+			, DIRECTIONLEFT
+			, DIRECTIONRIGHT
+			, DIRECTIONUP
+			, DIRECTIONDOWN
 		};
-		unsigned short int		m_snakeDirection = DIRECTIONNONE;
+		unsigned short int		m_snakeDirection =
+			DIRECTIONNONE;
 		bool				m_snakeMustDie = false;
 		signed short int		m_snakeMoveAccumulator = 0;
 		unsigned short int		m_snakeHeadPositionId = 0;

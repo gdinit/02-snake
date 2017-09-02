@@ -4,7 +4,8 @@
 // e.g.: background, borders, top text (score, lives, snakename)
 //
 // Note that all main objects (such as snakeObject, foodObject, wallObject)
-// are each defined in their own class files, and instantiated via global unique_ptr
+// are each defined in their own class files, and instantiated via global
+// unique_ptr
 
 #ifndef  COMMON_H
 #define  COMMON_H
@@ -17,16 +18,19 @@
 
 #include <SFML/Graphics.hpp>
 
-class Common : public sf::Transformable, public sf::Drawable, private sf::NonCopyable
+class Common : public sf::Transformable, public sf::Drawable, private
+	     sf::NonCopyable
 {
 	public:
 		Common();
 		virtual ~Common();
 		void		update( sf::Time timeSinceLastUpdate );
-		virtual void	draw( sf::RenderTarget &target, sf::RenderStates states ) const;
+		virtual void	draw( sf::RenderTarget &target, sf::RenderStates
+		states ) const;
 
 	protected:
-		friend class Snake;	// Snake now can see the internals of Common
+		friend class Snake;	// Snake now can see the internals of
+					// Common
 		sf::RectangleShape	m_playAreaBarTop;
 		sf::RectangleShape	m_playAreaBarBottom;
 		sf::RectangleShape	m_playAreaBarLeft;

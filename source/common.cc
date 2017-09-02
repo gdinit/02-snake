@@ -14,7 +14,10 @@ Common::Common()
 	m_topText.setCharacterSize( 18u );
 	m_topText.setFillColor( sf::Color::White );
 
-	m_topText.setString( "SAMMY-->     Lives: " + std::to_string( GLOBALS->livesLeft ) + "                       " + std::to_string( GLOBALS->currentScore ) + "  " );
+	m_topText.setString( "SAMMY-->     Lives: " + std::to_string(
+			GLOBALS->livesLeft ) + "                       " +
+		std::to_string(
+			GLOBALS->currentScore ) + "  " );
 	centerOrigin( m_topText );
 }
 
@@ -24,7 +27,10 @@ Common::~Common()
 
 void Common::update( sf::Time timeSinceLastUpdate )
 {
-	m_topText.setString( "SAMMY-->     Lives: " + std::to_string( GLOBALS->livesLeft ) + "                       " + std::to_string( GLOBALS->currentScore ) + "  " );
+	m_topText.setString( "SAMMY-->     Lives: " + std::to_string(
+			GLOBALS->livesLeft ) + "                       " +
+		std::to_string(
+			GLOBALS->currentScore ) + "  " );
 	centerOrigin( m_topText );
 }
 

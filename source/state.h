@@ -39,7 +39,8 @@ namespace sf
 class State
 {
 	public:
-		State( StateMachine &machine,                sf::RenderWindow &window,         bool replace = true );
+		State( StateMachine &machine
+		, sf::RenderWindow &window,         bool replace = true );
 
 		virtual ~State() = default;
 
@@ -55,12 +56,14 @@ class State
 		void			toggleDebugShowOverlay();
 		void			toggleDebugConsoleOutput();
 		void			toggleDebugDynFPSConsoleOutput();
-		void			updateDebugOverlayTextIfEnabled( bool b );
+		void			updateDebugOverlayTextIfEnabled( bool
+		b );
 		void			updateDebugOverlayTextIfEnabled();
 		void			printConsoleDebugIfEnabled();
 		void			recordObservedFPS();
 		void			dynamicallyAdjustFPSLimit();
-		unsigned short int	calcMedianFPS( std::deque <unsigned short int> records );
+		unsigned short int	calcMedianFPS( std::deque <unsigned
+			short int> records );
 		void			restartStateClock();
 		int			getStateAgeAsSeconds();
 
@@ -84,7 +87,8 @@ class State
 		std::deque <unsigned short int>	m_observedFPSLastN;
 		short int			m_FPSAdjPosDelta = 0;
 		short int			m_FPSAdjNegDelta = 0;
-		unsigned short int		m_activeFPSLimit = CONFIG_DESIRED_FPS_INT;
+		unsigned short int		m_activeFPSLimit =
+			CONFIG_DESIRED_FPS_INT;
 		bool				m_justResumed = false;
 };
 

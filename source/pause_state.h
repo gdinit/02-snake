@@ -33,7 +33,8 @@ namespace sf
 class PauseState : public State
 {
 	public:
-		PauseState( StateMachine &machine, sf::RenderWindow &window, bool replace = true );
+		PauseState( StateMachine &machine, sf::RenderWindow &window
+		, bool replace = true );
 		void	initializeState();
 		void	processEvents();
 		void	update();

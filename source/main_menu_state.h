@@ -34,7 +34,9 @@ namespace sf
 class MainMenuState : public State
 {
 	public:
-		MainMenuState( StateMachine &machine,                sf::RenderWindow &window,                 bool replace = true );
+		MainMenuState( StateMachine &machine
+		, sf::RenderWindow &window,                 bool replace =
+			true );
 		void	initializeState();
 		void	processEvents();
 		void	buttonCollisionDetectRespond( void ) noexcept;

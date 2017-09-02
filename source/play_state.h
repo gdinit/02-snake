@@ -43,9 +43,9 @@ namespace sf
 class PlayState : public State
 {
 	public:
-		PlayState( StateMachine &	machine,
-		sf::RenderWindow &		window,
-		bool				replace = true );
+		PlayState( StateMachine &machine
+		, sf::RenderWindow &window
+		, bool replace = true );
 		void	initializeState();
 		void	processEvents();
 		void	update();

@@ -23,7 +23,8 @@ struct Globals {
 	bool moveUpRequestActive = false;
 	bool moveDownRequestActive = false;
 	signed long int	currentScore = -1;
-	// snake.cc does not have access to *_state's feature "m_machine.quit()",
+	// snake.cc does not have access to *_state's feature
+	// "m_machine.quit()",
 	// therefore if an app termination is needed they flip this bool
 	bool mustDie = false;
 	// TODO: change this to show "Game Over!"" screen
