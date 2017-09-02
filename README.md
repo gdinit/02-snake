@@ -1,5 +1,4 @@
 # SNAKE
-
 ### A clone of the Classic Game Snake by gdinit
 https://github.com/gdinit
 
