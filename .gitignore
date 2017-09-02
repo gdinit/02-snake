@@ -31,6 +31,9 @@
 *.out
 *.app
 
+# Temporary text files
+__tmp__*.txt
+
 # Mac
 .DS_Store
 
