@@ -1,3 +1,4 @@
+[![Build Status](http://jenkins.kzalloc.org/buildStatus/icon?style=plastic&job=02-snake)](http://jenkins.kzalloc.org/job/02-snake/)
 # SNAKE
 ### A clone of the Classic Game Snake by gdinit
 https://github.com/gdinit
